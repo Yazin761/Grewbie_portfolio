@@ -10,9 +10,9 @@ const Works = () => {
   const previewRef = useRef(null);
 
   const [currentIndex, setCurrentIndex] = useState(null);
-  const text = `Featured projects that have been meticulously
-    crafted with passion to drive
-    results and impact.`;
+  const text = `Flagship products from Grewbie Technologies —
+    AI sales demo automation and marketing
+    services built to scale your business.`;
 
   const mouse = useRef({ x: 0, y: 0 });
   const moveX = useRef(null);
@@ -100,12 +100,12 @@ const Works = () => {
   };
 
   return (
-    <section id="work" className="flex flex-col min-h-screen">
+    <section id="work" className="flex min-h-screen flex-col bg-zinc-950">
       <AnimatedHeaderSection
         subTitle={"Logic meets Aesthetics, Seamlessly"}
         title={"Works"}
         text={text}
-        textColor={"text-black"}
+        textColor={"text-zinc-100"}
         withScrollTrigger={true}
       />
       <div
@@ -113,9 +113,12 @@ const Works = () => {
         onMouseMove={handleMouseMove}
       >
         {projects.map((project, index) => (
-          <div
+          <a
             key={project.id}
             id="project"
+            href={project.href}
+            target="_blank"
+            rel="noopener noreferrer"
             className="relative flex flex-col gap-1 py-5 cursor-pointer group md:gap-0"
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={() => handleMouseLeave(index)}
@@ -125,24 +128,24 @@ const Works = () => {
               ref={(el) => {
                 overlayRefs.current[index] = el;
               }}
-              className="absolute inset-0 hidden md:block duration-200 bg-black -z-10 clip-path"
+              className="absolute inset-0 -z-10 hidden clip-path duration-200 md:block md:group-hover:bg-white"
             />
 
             {/* title */}
-            <div className="flex justify-between px-10 text-black transition-all duration-500 md:group-hover:px-12 md:group-hover:text-white">
-              <h2 className="lg:text-[32px] text-[26px] leading-none">
+            <div className="flex justify-between px-10 text-zinc-200 transition-all duration-500 md:group-hover:px-12 md:group-hover:text-zinc-950">
+              <h2 className="lg:text-[26px] text-[22px] leading-none">
                 {project.name}
               </h2>
-              <Icon icon="lucide:arrow-up-right" className="md:size-6 size-5" />
+              <Icon icon="lucide:arrow-up-right" className="size-5 transition-colors md:size-6 md:group-hover:text-zinc-950" />
             </div>
             {/* divider */}
-            <div className="w-full h-0.5 bg-black/80" />
+            <div className="h-0.5 w-full bg-white/20" />
             {/* framework */}
             <div className="flex px-10 text-xs leading-loose uppercase transtion-all duration-500 md:text-sm gap-x-5 md:group-hover:px-12">
               {project.frameworks.map((framework) => (
                 <p
                   key={framework.id}
-                  className="text-black transition-colors duration-500 md:group-hover:text-white"
+                  className="text-zinc-400 transition-colors duration-500 md:group-hover:text-zinc-950"
                 >
                   {framework.name}
                 </p>
@@ -152,26 +155,32 @@ const Works = () => {
             <div className="relative flex items-center justify-center px-10 md:hidden h-[400px]">
               <img
                 src={project.bgImage}
-                alt={`${project.name}-bg-image`}
+                alt=""
+                loading="lazy"
+                decoding="async"
                 className="object-cover w-full h-full rounded-md brightness-50"
               />
               <img
                 src={project.image}
-                alt={`${project.name}-image`}
+                alt={`${project.name} — ${project.description.slice(0, 80)}…`}
+                loading="lazy"
+                decoding="async"
                 className="absolute bg-center px-14 rounded-xl"
               />
             </div>
-          </div>
+          </a>
         ))}
         {/* desktop Flaoting preview image */}
         <div
           ref={previewRef}
-          className="fixed -top-2/6 left-0 z-50 overflow-hidden border-8 border-black pointer-events-none w-[960px] md:block hidden opacity-0"
+          className="pointer-events-none fixed -top-2/6 left-0 z-50 hidden w-[960px] overflow-hidden rounded-sm border-8 border-zinc-800 opacity-0 md:block"
         >
           {currentIndex !== null && (
             <img
               src={projects[currentIndex].image}
-              alt="preview"
+              alt={`${projects[currentIndex].name} product preview`}
+              loading="lazy"
+              decoding="async"
               className="object-cover w-full h-full"
             />
           )}

@@ -1,96 +1,227 @@
-# 🌐 3D Awwwards-Level Developer Portfolio
+# GrewBie Tech — Portfolio / Marketing Site
 
-### Built with React, GSAP, Three.js, TailwindCSS
-
-This is a fully animated, interactive, 3D developer portfolio designed to **impress clients, recruiters, and hiring managers**. It's more than a portfolio—it's a web experience built with production-level code, scroll-based animations, and real-world best practices.
-
-> ⚡ Inspired by Awwwards-level sites — built with React (Vite), TailwindCSS, GSAP, React Three Fiber, and Drei.
-
-<br/>
-<div>
-  <img src="https://github.com/user-attachments/assets/4eaf9399-fd02-4a90-83f7-2b5a361bc032" alt="Hero" style="border-radius: 8px;"/>
-  <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-    <img src="https://github.com/user-attachments/assets/155bf742-b24f-4119-89f4-87e6d88c8f53" alt="Works" style="width: 32%; border-radius: 8px;"/>
-    <img src="https://github.com/user-attachments/assets/f22b9749-85ed-434f-a5f6-df1f8e221103" alt="ContactSummary" style="width: 32%; border-radius: 8px;"/>
-    <img src="https://github.com/user-attachments/assets/3e473322-b96a-433b-aec5-ece9bab25795" alt="Contact" style="width: 32%; border-radius: 8px;"/>
-  </div>
-</div>
-<br/>
-
-> 📺 [Watch Full YouTube Walkthrough](https://youtu.be/i0229UsdBwc)
----
-
-## 🚀 Tech Stack
-
-| Technology       | Description                             |
-| ---------------- | --------------------------------------- |
-| **React (Vite)** | Fast dev server and production bundling |
-| **Tailwind CSS** | Utility-first styling for components    |
-| **GSAP**         | Scroll-based animation and motion logic |
-| **Three.js**     | 3D scenes powered by React Three Fiber  |
-| **Drei**         | Useful helpers for 3D rendering         |
+A single-page, scroll-driven marketing site built in the style of Awwwards-level portfolios: smooth motion, dark theme, emerald hero gradient, and section-based layout. Use this repo as a **template** for similar agency, product, or portfolio sites.
 
 ---
 
-## 📁 Features
+## What this site is
 
-- 🔥 3D Hero Section with animated planet and golden ring
-- 🧩 Smooth slide-in Navbar with staggered link animations
-- 🎯 Scroll-triggered Service Summary with horizontal word motion
-- 🖼️ Works section with hover overlays and interactive previews
-- ✍️ About section with clip-path image reveal + typewriter text
-- 🏁 Marquee-based Contact Summary and CTA
-- 💼 Fully responsive and accessible on all screen sizes
+- **One long page** (not multi-route) with anchored sections: Home → Services → About → Works → Contact
+- **Content-driven**: most copy and lists live in `src/constants/`
+- **Animation-heavy**: GSAP scroll triggers, Lenis smooth scroll, marquees, hover interactions
+- **Deployable as static files** via Vite (`dist/` → Vercel, Netlify, Cloudflare Pages, etc.)
 
 ---
 
-## 📦 Setup & Installation
+## Tech stack
 
-```bash
-git clone https://github.com/Ali-Sanati/awwwards-portfolio.git
-cd awwwards-portfolio
-npm install
-npm run dev
+| Layer | Technology | Role |
+|--------|------------|------|
+| **Framework** | React 19 | UI components and state |
+| **Bundler** | Vite 6 | Dev server and production build |
+| **Styling** | Tailwind CSS v4 (`@tailwindcss/vite`) | Layout, typography, colors, responsive design |
+| **Animation** | GSAP 3 + `@gsap/react` | Timelines, scroll triggers, hovers, reveals |
+| **Smooth scroll** | Lenis (`lenis/react`) | Smooth scrolling for the whole page |
+| **Icons** | Iconify (`@iconify/react`) | UI icons (arrows, menu, etc.) |
+| **In-page nav** | `react-scroll` | Navbar scrolls to `#home`, `#services`, etc. |
+| **Breakpoints** | `react-responsive` | Mobile vs desktop behavior (e.g. sticky services) |
+| **SEO** | `Seo.jsx` + `constants/seo.js` | Title, meta tags, JSON-LD at runtime |
+| **Utilities** | `classnames` | Conditional CSS classes in UI components |
+| **Hero background** | `BackgroundGradientAnimation` | Animated emerald gradient mesh (Aceternity-style) |
+
+**Note:** `three`, `@react-three/fiber`, and `@react-three/drei` are still in `package.json` from the original template (3D planet hero). The current hero uses the gradient component instead. You can remove Three.js dependencies if you do not use 3D.
+
+---
+
+## Project structure
+
+```
+src/
+├── App.jsx                 # Root: Lenis wrapper + section order
+├── main.jsx                # React entry point
+├── index.css               # Fonts, Tailwind theme, custom utilities
+├── constants/
+│   ├── index.js            # Services, projects (works), social links
+│   └── seo.js              # SEO copy, site URL, structured data
+├── components/
+│   ├── AnimatedHeaderSection.jsx   # Section titles + intro blocks
+│   ├── AnimatedTextLines.jsx       # Line-by-line scroll animation
+│   ├── Marquee.jsx                 # Infinite horizontal text
+│   ├── Seo.jsx                     # Injects meta / JSON-LD on load
+│   └── ui/
+│       └── BackgroundGradientAnimation.jsx
+└── sections/               # One file per page block
+    ├── Navbar.jsx
+    ├── Hero.jsx
+    ├── ServiceSummary.jsx
+    ├── Services.jsx
+    ├── About.jsx
+    ├── Works.jsx
+    ├── ContactSummary.jsx
+    └── Contact.jsx
+
+public/
+├── assets/                 # Images, backgrounds, project previews
+├── fonts/                  # Custom fonts (Amiamie)
+└── site.webmanifest
 ```
 
-> Open http://localhost:5173 in your browser.
+**Pattern to reuse:**
+
+- `sections/` = full-width page blocks
+- `components/` = reusable UI patterns
+- `constants/` = data you change without touching layout logic
 
 ---
 
-## 🛠️ Customization Tips
+## How the page is assembled
 
-- Change text, images, and links in /constants/index.js
-
-- Update 3D models and scene in Hero.jsx
-
-- Add your own contact info in Contact.jsx
-
-- Adjust colors, fonts, and layout via tailwind.config.js
+1. `main.jsx` mounts React and loads global CSS.
+2. `App.jsx` wraps the site in `ReactLenis` for smooth scroll.
+3. Sections are stacked vertically in a fixed order (no React Router).
+4. Each section has an `id` (`#home`, `#services`, `#about`, `#work`, `#contact`) for navbar links.
+5. Lists and copy come from `src/constants/index.js`.
 
 ---
 
-## 🔗 Assets
+## What makes it feel “premium”
 
-Assets used in the project can be found [here](https://github.com/user-attachments/files/19820923/public.zip)
+### GSAP scroll animations
+
+- `useGSAP` runs animations when elements enter the viewport (`ScrollTrigger`).
+- Used for: header entrances, staggered project rows, About cards, Services sticky stack (desktop).
+
+### Reusable header pattern
+
+`AnimatedHeaderSection` appears on most sections:
+
+- Small subtitle (uppercase)
+- Large title
+- Optional divider line
+- Right-aligned body text via `AnimatedTextLines`
+
+### Hero
+
+- `BackgroundGradientAnimation`: emerald/teal animated gradient, optional pointer interaction.
+- Copy passed as props: `subTitle`, `title`, `text`.
+
+### Navbar
+
+- Fixed burger; slide-in panel animated with GSAP.
+- `react-scroll` links smooth-scroll to sections.
+
+### Marquee
+
+- `Marquee.jsx`: GSAP horizontal loop for Contact and Contact Summary strips.
+
+### Works section
+
+- Projects from `constants/index.js` (e.g. DemoAgent, Brand Cure).
+- Desktop: hover inverts row + floating image follows cursor.
+- Mobile: inline preview images.
+
+### Typography and theme
+
+- Custom font **Amiamie** via `@font-face` in `index.css`.
+- Tailwind `@theme` for brand tokens (`gold`, `primary`, etc.).
+- Custom utilities: `banner-text-responsive`, `value-text-responsive`, `marquee-text-responsive`, `contact-text-responsive`.
+
+### Dark theme
+
+- Base: `bg-zinc-950`, `text-zinc-100`, emerald accents on hero and interactive elements.
 
 ---
 
-## 📣 Like the project?
+## Commands
 
-If this helped you build or inspire your own site:
-
-- ⭐ Star this repo
-
-- 📺 [Watch the full walkthrough on YouTube](https://youtu.be/i0229UsdBwc)
-
-- 📬 [Connect on LinkedIn](https://www.linkedin.com/in/ali-sanati)
-
-- 📷 [Follow me on Instagram](https://www.instagram.com/ali.sanatidev/reels/)
+```bash
+npm install
+npm run dev       # http://localhost:5173
+npm run build     # output → dist/
+npm run preview   # test production build locally
+npm run lint
+```
 
 ---
 
-## 🤝 Let’s Build Together
+## Environment
 
-Drop a comment on the video or open an issue with your idea!
+Copy `.env.example` to `.env` and set your production URL for SEO:
 
-> 📩 Like, subscribe, and let me know what kind of project you want to build together!
+```env
+VITE_SITE_URL=https://grewbie.com
+```
+
+Used by `src/constants/seo.js` for canonical URLs, Open Graph, and JSON-LD.
+
+---
+
+## Customization checklist (new site from this template)
+
+1. Fork or clone this repo (or `npm create vite@latest` and add the same dependencies).
+2. Replace content in `src/constants/index.js` (services, projects, socials).
+3. Edit section copy in `src/sections/*.jsx`.
+4. Tune colors, fonts, and utilities in `src/index.css`.
+5. Reuse `AnimatedHeaderSection` per block for consistent rhythm.
+6. Add GSAP only where motion adds value (avoid over-animating).
+7. Put assets in `public/` and reference as `/assets/...`.
+8. Update `src/constants/seo.js` and `src/components/Seo.jsx`.
+9. Set `VITE_SITE_URL` before deploy.
+
+**Quick edit map:**
+
+| What to change | Where |
+|----------------|--------|
+| Services cards | `src/constants/index.js` → `servicesData` |
+| Works / products | `src/constants/index.js` → `projects` |
+| Social links | `src/constants/index.js` → `socials` |
+| Email / contact | `src/sections/Contact.jsx`, `src/sections/Navbar.jsx` |
+| Hero text | `src/sections/Hero.jsx` |
+| SEO | `src/constants/seo.js` |
+| Colors / fonts | `src/index.css` (`@theme`, `@font-face`, utilities) |
+
+---
+
+## Minimal dependencies for a similar site
+
+If you drop 3D and keep the same feel:
+
+```
+react react-dom
+vite @vitejs/plugin-react
+tailwindcss @tailwindcss/vite
+gsap @gsap/react
+lenis
+react-scroll
+react-responsive
+@iconify/react
+classnames
+```
+
+---
+
+## Good fit / not a fit
+
+**Good for:**
+
+- Agency, portfolio, or product landing pages
+- Long-scroll storytelling sites
+- Dark, motion-forward marketing sites
+
+**Not ideal for (without changes):**
+
+- Multi-page blogs or CMS-heavy sites (content is in JS files)
+- Server-rendered SEO-critical apps (this is a client-side SPA; meta is set via `Seo.jsx` + static `index.html`)
+- Many routes (add React Router or migrate to Next.js if needed)
+
+---
+
+## One-line mental model
+
+**Vite + React + Tailwind for layout, GSAP + Lenis for motion and scroll feel, section components + a constants file for content** — reuse that recipe for other sites in the same style.
+
+---
+
+## Credits
+
+Original template inspired by [Awwwards-style portfolios](https://youtu.be/i0229UsdBwc). Customized for **Grewbie Technologies** (DemoAgent, Brand Cure, agentic engineering).

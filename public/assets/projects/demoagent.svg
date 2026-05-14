@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <rect width="1200" height="800" fill="#09090b"/>
+  <rect x="80" y="80" width="1040" height="640" rx="24" fill="#18181b" stroke="#10b981" stroke-opacity="0.35"/>
+  <text x="120" y="200" fill="#34d399" font-family="system-ui,sans-serif" font-size="28" letter-spacing="0.35em">GREWBIE</text>
+  <text x="120" y="320" fill="#f4f4f5" font-family="system-ui,sans-serif" font-size="88" font-weight="700">DemoAgent</text>
+  <text x="120" y="400" fill="#a1a1aa" font-family="system-ui,sans-serif" font-size="32">Autonomous AI sales demos on Meet, Zoom &amp; Teams</text>
+  <circle cx="980" cy="520" r="120" fill="#10b981" fill-opacity="0.15"/>
+  <circle cx="980" cy="520" r="72" fill="#10b981" fill-opacity="0.35"/>
+  <text x="120" y="560" fill="#6ee7b7" font-family="system-ui,sans-serif" font-size="22">Record once · Deploy everywhere · Scale infinitely</text>
+</svg>

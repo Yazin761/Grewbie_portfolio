@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <rect width="1200" height="800" fill="#09090b"/>
+  <rect x="80" y="80" width="1040" height="640" rx="24" fill="#18181b" stroke="#cfa355" stroke-opacity="0.45"/>
+  <text x="120" y="200" fill="#cfa355" font-family="system-ui,sans-serif" font-size="28" letter-spacing="0.35em">GREWBIE</text>
+  <text x="120" y="320" fill="#f4f4f5" font-family="system-ui,sans-serif" font-size="88" font-weight="700">Brand Cure</text>
+  <text x="120" y="400" fill="#a1a1aa" font-family="system-ui,sans-serif" font-size="32">AI marketing, ads &amp; automation for startups &amp; SMBs</text>
+  <rect x="120" y="480" width="220" height="56" rx="12" fill="#cfa355" fill-opacity="0.2" stroke="#cfa355" stroke-opacity="0.5"/>
+  <text x="150" y="516" fill="#e5e5e0" font-family="system-ui,sans-serif" font-size="20">AI Ads · Landing Pages</text>
+  <rect x="360" y="480" width="280" height="56" rx="12" fill="#cfa355" fill-opacity="0.12" stroke="#cfa355" stroke-opacity="0.35"/>
+  <text x="390" y="516" fill="#d4d4d8" font-family="system-ui,sans-serif" font-size="20">Sales &amp; Marketing Automation</text>
+</svg>
