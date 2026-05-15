@@ -118,9 +118,5 @@ export const socials = [
     href: "https://www.linkedin.com/company/grewbie-technologies",
   },
   { name: "Website", href: "https://grewbie.com" },
-  {
-    name: "GitHub",
-    href: "https://github.com/Yazin761/Grewbie_portfolio",
-  },
   { name: "Email", href: "mailto:support@grewbie.com" },
 ];

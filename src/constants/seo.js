@@ -56,7 +56,6 @@ export const jsonLd = {
       sameAs: [
         "https://grewbie.com",
         "https://www.linkedin.com/company/grewbie-technologies",
-        "https://github.com/Yazin761/Grewbie_portfolio",
       ],
     },
     {
