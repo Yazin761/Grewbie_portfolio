@@ -53,7 +53,11 @@ export const jsonLd = {
         addressRegion: "Tamil Nadu",
         addressCountry: "IN",
       },
-      sameAs: [siteUrl, "https://grewbie.com"],
+      sameAs: [
+        "https://grewbie.com",
+        "https://www.linkedin.com/company/grewbie-technologies",
+        "https://github.com/Yazin761/Grewbie_portfolio",
+      ],
     },
     {
       "@type": "WebSite",
