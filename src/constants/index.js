@@ -112,6 +112,11 @@ export const projects = [
     ],
   },
 ];
+export const contactEmail = "yogeshwaran@grewbie.com";
+export const supportEmail = "support@grewbie.com";
+/** Grewbie Technologies — update here to change site-wide */
+export const phone = "+91 88389 24425";
+
 export const socials = [
   {
     name: "LinkedIn",

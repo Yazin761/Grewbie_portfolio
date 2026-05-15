@@ -1,7 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import AnimatedHeaderSection from "../components/AnimatedHeaderSection";
 import Marquee from "../components/Marquee";
-import { socials } from "../constants";
+import { contactEmail, phone, socials } from "../constants";
 import gsap from "gsap";
 
 const Contact = () => {
@@ -54,9 +54,12 @@ const Contact = () => {
             <div className="social-link">
               <h2>Phone</h2>
               <div className="my-2 h-px w-full bg-white/15" />
-              <p className="text-lg lowercase md:text-xl lg:text-2xl">
-                +33 7 12 12 32 12
-              </p>
+              <a
+                href={`tel:${phone.replace(/\s/g, "")}`}
+                className="text-lg lowercase transition-colors duration-200 hover:text-zinc-200 md:text-xl lg:text-2xl"
+              >
+                {phone}
+              </a>
             </div>
             <div className="social-link">
               <h2>Social Media</h2>

@@ -32,9 +32,9 @@ export const keywords = [
 
 export const ogImage = `${siteUrl}/og-image.svg`;
 
-export const contactEmail = "yogeshwaran@grewbie.com";
-export const supportEmail = "support@grewbie.com";
-export const phone = "+91 88389 24425";
+import { contactEmail, phone, supportEmail } from "./index.js";
+
+export { contactEmail, phone, supportEmail };
 
 export const jsonLd = {
   "@context": "https://schema.org",
